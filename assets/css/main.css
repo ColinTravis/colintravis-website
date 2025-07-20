@@ -1,7 +1,24 @@
 @import "tailwindcss";
 
 @theme {
+  /* Colors */
+  --color-default: #0f172b;
+  --color-gray: #f5f5f5;
   --color-test: #ff0000;
-  --color-ct-blue: '#0799ce';
+  --color-ct-blue: #0799ce;
+
   --font-sans: 'stolzl', sans-serif;
+}
+
+
+
+html,
+body {
+  @apply touch-pan-x;
+  @apply touch-pan-y;
+}
+
+body {
+  @apply font-sans;
+  @apply bg-slate-900;
 }

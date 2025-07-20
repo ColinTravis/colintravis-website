@@ -1,27 +1,29 @@
 <script setup>
-import RestaurantTest from '~/components/restaurant-test.vue';
 
-const title = 'Colin Travis Strapi Test'
-const description =
-  'Strapi Test'
-const image = 'https://colintravis.com/meta.jpg'
-
+const meta = {
+  title: 'Colin Travis Strapi Test',
+  description: 'Strapi Test',
+  url: 'https://colintravis.com',
+  image: 'https://colintravis.com/meta.jpg'
+}
 
 useSeoMeta({
-  title,
-  ogTitle: title,
-  description,
-  ogDescription: description,
-  ogImage: image,
+  title: meta.title,
+  ogTitle: meta.title,
+  description: meta.description,
+  ogDescription: meta.description,
+  ogImage: meta.image,
   twitterCard: 'summary_large_image'
 })
 
 
 
 </script>
+
 <template>
-  <div class="bg-blue-400">
-    <RestaurantTest />
-    <AboutBlock />
+  <div class="bg-gray dark:bg-slate-900">
+    <AppHeader/>
+    <!-- <RestaurantTest /> -->
+    <!-- <AboutBlock /> -->
   </div>
 </template>

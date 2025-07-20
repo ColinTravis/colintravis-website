@@ -3,8 +3,6 @@ const runtimeConfig = useRuntimeConfig()
 const restaurants = ref([])
 const restaurantError = ref(null)
 
-
-
 try {
     const { data: restaurantResponse, error } = await useFetch(`${runtimeConfig.public.strapiBaseUrl}/api/restaurants?populate=*`, {
         headers: {
