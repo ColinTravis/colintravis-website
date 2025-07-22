@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   /* Colors */
@@ -8,10 +11,8 @@
   --color-ct-blue: #0799ce;
   --color-gray-copy: #d1d5dc;
 
-  --font-sans: 'stolzl', sans-serif;
+  --font-sans: "stolzl", sans-serif;
 }
-
-
 
 html,
 body {
@@ -21,5 +22,6 @@ body {
 
 body {
   @apply font-sans;
-  @apply bg-slate-900;
+  @apply bg-white;
+  @apply dark:bg-slate-900;
 }

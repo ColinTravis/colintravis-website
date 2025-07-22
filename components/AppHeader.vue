@@ -18,6 +18,9 @@
           </li>
         </ul>
       </div>
+      <div class="flex items-center">
+        <DarkModeToggle />
+      </div>
     </div>
   </div>
 </template>

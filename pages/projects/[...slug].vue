@@ -1,13 +1,12 @@
 <script setup>
 const { slug } = useRoute().params;
 const runtimeConfig = useRuntimeConfig();
-import { useImageUrl } from "~/composables/useImageUrl";
 
 const { data: projectData } = await useAsyncData(
   "project",
   () =>
     $fetch(
-      // `${runtimeConfig.public.strapiBaseUrl}/api/projects?filters[projectName][$eq]=${slug}&populate=*`,
+      // `${runtimeConfig.public.strapiBaseUrl}/api/projects?filters[projectName][$eq]=${slug}&populate[projectHeader]=*&populate=heroImage`,
       `${runtimeConfig.public.strapiBaseUrl}/api/projects?filters[projectName][$eq]=${slug}&populate[projectHeader]=*&populate=heroImage&populate[projectContent][populate]=*`,
       {
         headers: {
@@ -19,6 +18,34 @@ const { data: projectData } = await useAsyncData(
     transform: (res) => res.data[0],
   }
 );
+
+let metaTitle = 'Colin Travis'; // Default value
+if (projectData.value?.metaTitle) {
+  metaTitle = `Colin Travis | ${projectData.value.metaTitle}`;
+} else if (projectData.value?.projectName) {
+  metaTitle = `Colin Travis | ${projectData.value.projectName}`;
+}
+
+let metaDescription = 'Colin Travis Portfolio'; // Default value
+if (projectData.value?.metaDescription) {
+  metaDescription = `${projectData.value.metaDescription}`;
+}
+
+const meta = {
+  title: metaTitle,
+  description: metaDescription,
+  url: `https://colintravis.com/projects/${slug[0]}`
+}
+
+useSeoMeta({
+  title: meta.title,
+  ogTitle: meta.title,
+  description: meta.description,
+  ogDescription: meta.description,
+  ogImage: meta.image,
+  twitterCard: 'summary_large_image'
+})
+
 </script>
 
 <template>
@@ -54,5 +81,6 @@ const { data: projectData } = await useAsyncData(
         :modifiers="{ auto: 'format,compress' }" />
     </div>
   </div>
-  <pre class="text-white">{{ projectData }}</pre>
+  <BlockFeed :projectName="slug[0]" :projectContent="projectData.projectContent" />
+  <!-- <pre class="text-blue-600">{{ projectData.projectContent }}</pre> -->
 </template>

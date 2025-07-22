@@ -1,10 +1,10 @@
 <script setup>
 
 const meta = {
-  title: 'Colin Travis Strapi Test',
-  description: 'Strapi Test',
+  title: 'Colin Travis | Maker',
+  description: 'Colin Travis portfolio site',
   url: 'https://colintravis.com',
-  image: 'https://colintravis.com/meta.jpg'
+  image: 'https://colintravis.com/images/meta.jpg'
 }
 
 useSeoMeta({
@@ -16,15 +16,13 @@ useSeoMeta({
   twitterCard: 'summary_large_image'
 })
 
-
-
 </script>
 
 <template>
-  <div class="bg-gray dark:bg-slate-900">
+  <div class="pb-[1000px]">
     <AppHeader />
     <Intro />
-    <WorkFeed/>
+    <WorkFeed />
 
 
     <section id="about" class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24" aria-label="About me">
@@ -39,7 +37,5 @@ useSeoMeta({
         <h2 class="text-sm font-bold uppercase tracking-widest text-slate-200 lg:sr-only">Experience</h2>
       </div>
     </section>
-    <!-- <RestaurantTest /> -->
-    <!-- <AboutBlock /> -->
   </div>
 </template>
