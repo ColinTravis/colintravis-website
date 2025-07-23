@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       strapiBaseUrl: process.env.STRAPI_URL || "http://localhost:1337",
-      strapiApi: process.env.STRAPI_TOKEN,
+      strapiApi: process.env.STRAPI_TOKEN || null,
     },
   },
 
@@ -36,7 +36,7 @@ export default defineNuxtConfig({
     "nuxt-umami"
   ],
 
-  colorMode: { classSuffix: "", preference: "dark" },
+  colorMode: { classSuffix: "", preference: "light" },
 
   umami: {
     id: "6447c54d-c147-45b7-a622-9d86d74fe6d2",

@@ -1,41 +1,38 @@
 <script setup>
 
-const meta = {
-  title: 'Colin Travis | Maker',
-  description: 'Colin Travis portfolio site',
-  url: 'https://colintravis.com',
-  image: 'https://colintravis.com/images/meta.jpg'
-}
+const title = 'Colin Travis'
+const description =
+  'Colin Travis: Maker, Developer'
+const image = 'https://colintravis.com/ct_meta.jpg'
 
 useSeoMeta({
-  title: meta.title,
-  ogTitle: meta.title,
-  description: meta.description,
-  ogDescription: meta.description,
-  ogImage: meta.image,
+  title,
+  ogTitle: title,
+  description,
+  ogDescription: description,
+  ogImage: image,
   twitterCard: 'summary_large_image'
 })
 
 </script>
 
 <template>
-  <div class="pb-[1000px]">
-    <AppHeader />
-    <Intro />
-    <WorkFeed />
-
-
-    <section id="about" class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24" aria-label="About me">
-      <div
-        class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-slate-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-        <h2 class="text-sm font-bold uppercase tracking-widest text-slate-200 lg:sr-only">About</h2>
+  <div class="h-screen bg-grey-lighter font-stolzl w-full">
+    <div class="flex items-center justify-center mx-auto h-full w-full px-8 md:px-16 max-w-lg md:max-w-xl">
+      <div class="flex flex-col w-full p-4 mb-6 bg-white rounded-lg shadow-xl gap-4">
+        <logos-Ct-Logo-light class="block w-1/2 mx-auto" />
+        <h1 class="text-center">ColinTravis.com</h1>
+        <p class="text-center">🤷‍♂️ ⏳</p>
+        <a class="mx-auto" href="https://github.com/ColinTravis">
+          <Icon name="uil:github" class="size-8 hover:text-ct-blue git-icon transition-colors duration-200" />
+        </a>
       </div>
-    </section>
-    <section id="experience" class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24" aria-label="Work experience">
-      <div
-        class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-slate-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-        <h2 class="text-sm font-bold uppercase tracking-widest text-slate-200 lg:sr-only">Experience</h2>
-      </div>
-    </section>
+    </div>
   </div>
 </template>
+
+<style>
+.git-icon {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+</style>

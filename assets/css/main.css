@@ -23,5 +23,4 @@ body {
 body {
   @apply font-sans;
   @apply bg-white;
-  @apply dark:bg-slate-900;
 }
