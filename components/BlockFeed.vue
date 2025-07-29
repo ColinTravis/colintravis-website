@@ -14,6 +14,7 @@ const componentMap = {
   "text.text-block": "Text",
   "media.multiple-image": "Multiple-Image",
   "media.single-image": "Single-Image",
+  "media.video-inline": "Video-Inline",
 };
 
 // Compute the component name for each block
