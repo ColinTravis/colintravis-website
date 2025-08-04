@@ -1,6 +1,5 @@
 <script setup>
 const { slug } = useRoute().params;
-const runtimeConfig = useRuntimeConfig();
 
 const { data: projectData } = await useAsyncData(
   `project-${slug}`,

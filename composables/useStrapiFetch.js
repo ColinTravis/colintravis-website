@@ -14,12 +14,12 @@ export const useStrapiFetch = async (
   strapiQuery = {},
   fetchOptions = {}
 ) => {
-  console.log(
-    "useStrapiFetch called with path:",
-    path,
-    "and query:",
-    strapiQuery
-  );
+  // console.log(
+  //   "useStrapiFetch called with path:",
+  //   path,
+  //   "and query:",
+  //   strapiQuery
+  // );
   const config = useRuntimeConfig();
   const strapiUrl = config.public.strapiBaseUrl || "http://localhost:1337";
   const strapiApi = config.public.strapiApi;
