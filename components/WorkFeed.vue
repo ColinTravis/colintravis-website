@@ -27,13 +27,6 @@ try {
   </div>
   <div v-else class="md:grid-cols-3 py-24 grid gap-4 max-w-6xl mx-auto">
     <!-- <pre>{{ projects }}</pre> -->
-    <nuxt-link :to="`projects/${project.projectName}`" class="bg-transparent border-2 border-gray-600 text-white shadow-lg rounded-md p-6"
-      v-for="project in projects">
-      <p>{{ project.projectName }}</p>
-      <p>{{ project.projectHeader.subHeader }}</p>
-      <NuxtImg provider="imgix" format="webp" :src="useImageUrl(project.heroImage?.url)" width="700" height="700"
-        fit="cover" :modifiers="{ auto: 'format,compress' }" />
-    </nuxt-link>
-
+      <WorkCard v-for="project in projects" :project="project" />
   </div>
 </template>
