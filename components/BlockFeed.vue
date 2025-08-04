@@ -12,9 +12,13 @@ const props = defineProps({
 
 const componentMap = {
   "text.text-block": "Text",
+  "text.header": "Header",
+  "text.quote": "Quote",
   "media.multiple-image": "Multiple-Image",
   "media.single-image": "Single-Image",
   "media.video-inline": "Video-Inline",
+  "media.video-embed": "Video-Embed",
+  "layout.grid": "Grid",
 };
 
 // Compute the component name for each block
@@ -31,13 +35,13 @@ const getComponentName = (block) => {
     <p class="dark:text-white ">
       BLOCKS here:
     </p>
-    <div class="flex flex-col gap-8">
+    <div class="flex flex-col gap-12">
       <div v-for="(block, idx) in projectContent" :key="`${block.__component}${block.id}` || idx">
-        <component :is="getComponentName(block)" :blockData="block" />
+        <component :is="getComponentName(block)" :blockData="block" v-bind="block" />
       </div>
     </div>
-    <!-- <pre>
+    <pre>
       {{ projectContent }}
-    </pre> -->
+    </pre>
   </div>
 </template>

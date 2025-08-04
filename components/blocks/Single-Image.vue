@@ -22,14 +22,21 @@ const spacing = computed(() => {
 
 
 <template>
-  <div class="flex gap-8 flex-col lg:flex-row items-center w-full">
-    <!-- <div v-for="image in blockData.images" :key="image.id" class="w-full lg:w-1/2"> -->
-      <NuxtImg v-if="blockData.image" provider="imgix" format="webp" :src="useImageUrl(blockData.image?.url)" width="400" height="400"
-        fit="cover" :modifiers="{ auto: 'format,compress' }" />
-    <!-- </div> -->
+  <div class="flex flex-col items-center mx-auto" :class="fullScreen ? 'w-full' : 'md:w-1/2 px-12'">
+    <NuxtImg v-if="image" class="w-full" provider="imgix" format="webp"
+      :src="useImageUrl(image?.url)" width="1000" :modifiers="{ auto: 'format,compress' }" />
   </div>
 </template>
 
 <script setup>
-const props = defineProps({ blockData: Object });
+const props = defineProps({
+  image: {
+    type: Object,
+    required: true
+  },
+  fullScreen: {
+    type: Boolean,
+    default: false
+  }
+});
 </script>

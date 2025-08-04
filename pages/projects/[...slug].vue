@@ -3,21 +3,48 @@ const { slug } = useRoute().params;
 const runtimeConfig = useRuntimeConfig();
 
 const { data: projectData } = await useAsyncData(
-  "project",
-  () =>
-    $fetch(
-      // `${runtimeConfig.public.strapiBaseUrl}/api/projects?filters[projectName][$eq]=${slug}&populate[projectHeader]=*&populate=heroImage`,
-      `${runtimeConfig.public.strapiBaseUrl}/api/projects?filters[projectName][$eq]=${slug}&populate[projectHeader]=*&populate=heroImage&populate[projectContent][populate]=*`,
-      {
-        headers: {
-          Authorization: `Bearer ${runtimeConfig.public.strapiApi}`,
+  `project-${slug}`,
+  () => useStrapiFetch(
+    '/projects',
+    {
+      filters: {
+        projectName: {
+          $eq: slug,
         },
-      }
-    ),
+      },
+      status: 'published',
+      populate: {
+        projectHeader: '*',
+        heroImage: true,
+        projectContent: {
+          populate: '*',
+        },
+      },
+    }
+  ),
   {
-    transform: (res) => res.data[0],
+    transform: (response) => {
+      if (!response?.data?.length) return null;
+      return response.data[0];
+    },
   }
 );
+
+// const { data: projectData } = await useAsyncData(
+//   "project",
+//   () =>
+//     $fetch(
+//       `${runtimeConfig.public.strapiBaseUrl}/api/projects?filters[projectName][$eq]=${slug}&populate[projectHeader]=*&populate=heroImage&populate[projectContent][populate]=*&status=published`,
+//       {
+//         headers: {
+//           Authorization: `Bearer ${runtimeConfig.public.strapiApi}`,
+//         },
+//       }
+//     ),
+//   {
+//     transform: (res) => res.data[0],
+//   }
+// );
 
 let metaTitle = 'Colin Travis'; // Default value
 if (projectData.value?.metaTitle) {
@@ -55,7 +82,7 @@ useSeoMeta({
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <h1 class="dark:text-white text-black text-6xl font-bold">
-            {{ projectData.projectName }}
+            {{ projectData.projectHeader.header ? projectData.projectHeader.header : projectData.projectName }}
           </h1>
           <h2 class="dark:text-gray-copy text-black text-2xl text-balance">
             {{ projectData.projectHeader.subHeader }}
@@ -76,8 +103,8 @@ useSeoMeta({
           </p>
         </div>
       </div>
-      <NuxtImg v-if="projectData.heroImage" provider="imgix" format="webp"
-        :src="useImageUrl(projectData.heroImage?.url)" width="700" height="700" fit="cover"
+      <NuxtImg v-if="projectData.heroImage" provider="imgix" format="webp" class="w-full"
+        :src="useImageUrl(projectData.heroImage?.url)" sizes="100vw sm:50vw md:1920px" densities="x1 x2"
         :modifiers="{ auto: 'format,compress' }" />
     </div>
   </div>

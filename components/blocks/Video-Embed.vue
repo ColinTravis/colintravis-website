@@ -1,29 +1,29 @@
 <script setup>
 const props = defineProps({
-    blok: {
+    blockData: {
         type: Object,
         required: true
     }
-})
+});
 
 const videoShowing = ref(false)
-let currentVideoType = ref(props.blok.videoType)
+let currentVideoType = ref(props.blockData.videoType)
 let vimeoIframe = ref(null)
 let youtubeIframe = ref(null)
 
-const { data: oembed } = await useAsyncData(`oembed-${props.blok._uid}`, () =>
+const { data: oembed } = await useAsyncData(`oembed-${props.blockData._uid}`, () =>
     $fetch(
-        props.blok.videoType == 'youtube'
-            ? `https://www.youtube.com/oembed?url=${props.blok.videoUrl}`
-            : `https://vimeo.com/api/oembed.json?url=${props.blok.videoUrl}&width=1920&height=1080&autoplay=1`
+        props.blockData.videoType == 'youtube'
+            ? `https://www.youtube.com/oembed?url=${props.blockData.videoUrl}`
+            : `https://vimeo.com/api/oembed.json?url=${props.blockData.videoUrl}&width=1920&height=1080&autoplay=1`
     )
 )
 
 const videoThumbnail = computed(() => {
     if (oembed.value.thumbnail_url) {
-        if (props.blok.videoType == 'vimeo') {
+        if (props.blockData.videoType == 'vimeo') {
             return oembed.value.thumbnail_url_with_play_button
-        } else if (props.blok.videoType == 'youtube') {
+        } else if (props.blockData.videoType == 'youtube') {
             return oembed.value.thumbnail_url.replace('hqdefault', 'maxresdefault')
         } else {
             return null
@@ -32,7 +32,7 @@ const videoThumbnail = computed(() => {
 })
 
 const videoId = computed(() => {
-    return props.blok.videoUrl.split('?v=')[1]
+    return props.blockData.videoUrl.split('?v=')[1]
 })
 
 let currentVideo = computed(() => {
@@ -46,24 +46,21 @@ function swapVideo() {
 }
 function playVideo(el) {
     nextTick(() => {
-        if (props.blok.videoType == 'youtube') {
+        if (props.blockData.videoType == 'youtube') {
             let videoFrame = document.querySelector('.video-element')
             videoFrame.src += '&autoplay=1'
         }
     })
 }
 
-const spacing = computed(() => {
-    return props.blok.spacing ? `margin-top: var(--spacing-${props.blok.spacing}); margin-bottom: var(--spacing-${props.blok.spacing})` : ''
-})
 </script>
 
 <template>
-    <div :style="spacing" v-editable="blok" class="w-full mx-auto">
+    <div class="w-full mx-auto">
         <transition name="fade" mode="out-in" @after-enter="playVideo">
             <div class="relative cursor-pointer video-placeholder" v-if="!videoShowing" key="placeholder"
                 @click="swapVideo()">
-                <div v-if="blok.videoType == 'youtube'"
+                <div v-if="blockData.videoType == 'youtube'"
                     class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 max-w-[100px]">
                     <div>
                         <p class="flex items-center max-w-[500px] w-full">
@@ -73,8 +70,8 @@ const spacing = computed(() => {
                 </div>
                 <img v-if="videoThumbnail" sizes="md:672px lg:1232px" height="552px" width="1232px" class="w-full"
                     :src="videoThumbnail" alt="video thumbnail" />
-                <p :style="`color:${blok.captionColor?.value ? blok.captionColor?.value : '#000'}`"
-                    v-if="blok.videoCaption" class="mt-3 font-serif text-base lg:text-lg">{{ blok.videoCaption }}</p>
+                <p v-if="blockData.videoCaption" class="mt-3 font-sans dark:text-white text-black">
+                    {{ blockData.videoCaption }}</p>
             </div>
             <div v-else>
                 <div class="video-block" ref="videoFrame" key="video">
@@ -91,8 +88,8 @@ const spacing = computed(() => {
                         allowfullscreen :title="oembed.title">
                     </iframe>
                 </div>
-                <p :style="`color:${blok.captionColor?.value ? blok.captionColor?.value : '#000'}`"
-                    v-if="blok.videoCaption" class="pt-3 font-serif text-base lg:text-lg">{{ blok.videoCaption }}</p>
+                <p v-if="blockData.videoCaption" class="pt-3 font-sans dark:text-white text-black">
+                    {{ blockData.videoCaption }}</p>
             </div>
         </transition>
     </div>
