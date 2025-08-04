@@ -1,0 +1,17 @@
+meta {
+  name: Get Social
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{strapiBaseUrl}}/api/global?populate[0]=socialLinks&populate[1]=socialLinks.icon&fields=id
+  body: none
+  auth: none
+}
+
+params:query {
+  populate[0]: socialLinks
+  populate[1]: socialLinks.icon
+  fields: id
+}
