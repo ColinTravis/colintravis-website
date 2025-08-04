@@ -6,6 +6,15 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["~/assets/css/main.css", "~/assets/css/fonts.css"],
 
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: "en",
+      },
+      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    },
+  },
+
   vite: {
     plugins: [tailwindcss()],
   },
@@ -16,7 +25,6 @@ export default defineNuxtConfig({
       strapiApi: process.env.STRAPI_TOKEN,
     },
   },
-
 
   image: {
     quality: 90,
@@ -33,7 +41,7 @@ export default defineNuxtConfig({
     "@nuxt/fonts",
     // "@nuxtjs/seo",
     "@nuxtjs/color-mode",
-    "nuxt-umami"
+    "nuxt-umami",
   ],
 
   colorMode: { classSuffix: "", preference: "dark" },
