@@ -29,6 +29,7 @@ const { data: projectData } = await useAsyncData(
   }
 );
 
+//https://g.co/gemini/share/a356caa3c2c8
 // issue: TypeError: can't access property "projectHeader", (intermediate value)(...) is null
 // const { data: projectData } = await useAsyncData(
 //   "project",
