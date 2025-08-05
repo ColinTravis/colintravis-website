@@ -2,7 +2,7 @@
     <div class="flex gap-8 flex-col lg:flex-row items-center w-full">
         <div v-for="image in images" :key="image.id" class="w-full lg:w-1/2 flex justify-center">
             <NuxtImg v-if="image" provider="imgix" format="webp" :src="useImageUrl(image?.url)" width="800" height="800"
-                fit="cover" :modifiers="{ auto: 'format,compress' }" />
+                fit="cover" :modifiers="{ auto: 'format,compress' }" loading="lazy" :placeholder="[50, 25, 75, 5]" />
         </div>
     </div>
 </template>

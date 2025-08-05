@@ -40,8 +40,8 @@ const getComponentName = (block) => {
         <component :is="getComponentName(block)" :blockData="block" v-bind="block" />
       </div>
     </div>
-    <pre>
+    <!-- <pre>
       {{ projectContent }}
-    </pre>
+    </pre> -->
   </div>
 </template>

@@ -30,6 +30,6 @@ try {
     <div v-html="aboutData.copy"></div>
     <pre>{{aboutData.hero}}</pre>
     <NuxtImg provider="imgix" format="webp" :src="useImageUrl(aboutData.hero?.url)"
-      width="700" height="700" fit="cover" :modifiers="{ auto: 'format,compress', crop: 'faces', mask: 'ellipse' }" />
+      width="700" height="700" fit="cover" :modifiers="{ auto: 'format,compress', crop: 'faces', mask: 'ellipse' }"  />
   </div>
 </template>

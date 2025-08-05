@@ -29,8 +29,10 @@ const { data: projectData } = await useAsyncData(
   }
 );
 
-//https://g.co/gemini/share/a356caa3c2c8
-// issue: TypeError: can't access property "projectHeader", (intermediate value)(...) is null
+if (!projectData.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Project Not Found', fatal: true });
+}
+
 // const { data: projectData } = await useAsyncData(
 //   "project",
 //   () =>
@@ -47,38 +49,55 @@ const { data: projectData } = await useAsyncData(
 //   }
 // );
 
-let metaTitle = 'Colin Travis'; // Default value
-if (projectData.value?.metaTitle) {
-  metaTitle = `Colin Travis | ${projectData.value.metaTitle}`;
-} else if (projectData.value?.projectName) {
-  metaTitle = `Colin Travis | ${projectData.value.projectName}`;
-}
+const metaTitle = computed(() => {
+  if (projectData.value?.metaTitle) {
+    return `Colin Travis | ${projectData.value.metaTitle}`;
+  }
+  if (projectData.value?.projectName) {
+    return `Colin Travis | ${projectData.value.projectName}`;
+  }
+  return 'Colin Travis';
+});
 
-let metaDescription = 'Colin Travis Portfolio'; // Default value
-if (projectData.value?.metaDescription) {
-  metaDescription = `${projectData.value.metaDescription}`;
-}
+const metaDescription = computed(() => {
+  return projectData.value?.metaDescription || 'Colin Travis Portfolio';
+});
 
-const meta = {
-  title: metaTitle,
-  description: metaDescription,
-  url: `https://colintravis.com/projects/${slug[0]}`
-}
+const metaImage = computed(() => {
+  if (projectData.value?.heroImage?.url) {
+    return useImageUrl(projectData.value.heroImage.url);
+  }
+  return null;
+});
+
+// let metaTitle = 'Colin Travis'; // Default value
+// if (projectData.value?.metaTitle) {
+//   metaTitle = `Colin Travis | ${projectData.value.metaTitle}`;
+// } else if (projectData.value?.projectName) {
+//   metaTitle = `Colin Travis | ${projectData.value.projectName}`;
+// }
+
+// let metaDescription = 'Colin Travis Portfolio'; // Default value
+// if (projectData.value?.metaDescription) {
+//   metaDescription = `${projectData.value.metaDescription}`;
+// }
 
 useSeoMeta({
-  title: meta.title,
-  ogTitle: meta.title,
-  description: meta.description,
-  ogDescription: meta.description,
-  ogImage: meta.image,
+  title: metaTitle,
+  ogTitle: metaTitle,
+  description: metaDescription,
+  ogDescription: metaDescription,
+  ogImage: metaImage,
+  url: `https://colintravis.com/projects/${slug[0]}`,
   twitterCard: 'summary_large_image'
-})
+});
+
 
 </script>
 
 <template>
   <AppHeader />
-  <div class="max-w-6xl px-4 sm:px-6 lg:px-8 mx-auto py-24">
+  <div v-if="projectData" class="max-w-6xl px-4 sm:px-6 lg:px-8 mx-auto py-24">
     <div class="flex flex-col mx-auto gap-12">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
@@ -106,9 +125,12 @@ useSeoMeta({
       </div>
       <NuxtImg v-if="projectData.heroImage" provider="imgix" format="webp" class="w-full"
         :src="useImageUrl(projectData.heroImage?.url)" sizes="100vw sm:50vw md:1920px" densities="x1 x2"
-        :modifiers="{ auto: 'format,compress' }" />
+        :modifiers="{ auto: 'format,compress' }" loading="lazy" :placeholder="[50, 25, 75, 5]" />
     </div>
   </div>
-  <BlockFeed :projectName="slug[0]" :projectContent="projectData.projectContent" />
+  <BlockFeed v-if="projectData" :projectName="slug[0]" :projectContent="projectData.projectContent" />
+  <div v-else class="flex justify-center items-center h-svh">
+    <p class="text-2xl">Loading project...</p>
+  </div>
   <!-- <pre class="text-blue-600">{{ projectData.projectContent }}</pre> -->
 </template>
