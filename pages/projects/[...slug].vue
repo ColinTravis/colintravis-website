@@ -29,6 +29,7 @@ const { data: projectData } = await useAsyncData(
   }
 );
 
+// issue: TypeError: can't access property "projectHeader", (intermediate value)(...) is null
 // const { data: projectData } = await useAsyncData(
 //   "project",
 //   () =>
