@@ -1,6 +1,8 @@
 <script setup>
 const { slug } = useRoute().params;
 
+const isDev = process.env.NODE_ENV !== 'production';
+
 const { data: projectData } = await useAsyncData(
   `project-${slug}`,
   () => useStrapiFetch(
@@ -11,7 +13,7 @@ const { data: projectData } = await useAsyncData(
           $eq: slug,
         },
       },
-      status: 'published',
+      status: `${isDev ? 'draft' : 'published'}`,
       populate: {
         projectHeader: '*',
         heroImage: true,
@@ -114,12 +116,9 @@ useSeoMeta({
             </div>
           </div>
         </div>
-        <div class="dark:text-gray-copy text-balance">
+        <div v-if="projectData.projectHeader.description" class="dark:text-gray-copy text-balance">
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim illo,
-            alias sint corporis iure facere ipsum assumenda possimus reiciendis
-            ex repellendus odio distinctio nobis rerum? Tempora adipisci nobis
-            exercitationem. Eos.
+            {{ projectData.projectHeader.description }}
           </p>
         </div>
       </div>

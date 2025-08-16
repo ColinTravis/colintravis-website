@@ -15,6 +15,7 @@ const componentMap = {
   "text.header": "Header",
   "text.quote": "Quote",
   "media.multiple-image": "Multiple-Image",
+  "media.multiple-video": "Multiple-Video",
   "media.single-image": "Single-Image",
   "media.video-inline": "Video-Inline",
   "media.video-embed": "Video-Embed",
@@ -32,9 +33,6 @@ const getComponentName = (block) => {
 
 <template>
   <div class="max-w-6xl px-4 sm:px-6 lg:px-8 mx-auto pb-24">
-    <p class="dark:text-white ">
-      BLOCKS here:
-    </p>
     <div class="flex flex-col gap-12">
       <div v-for="(block, idx) in projectContent" :key="`${block.__component}${block.id}` || idx">
         <component :is="getComponentName(block)" :blockData="block" v-bind="block" />
