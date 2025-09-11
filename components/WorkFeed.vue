@@ -3,7 +3,7 @@ const runtimeConfig = useRuntimeConfig()
 
 const isDev = process.env.NODE_ENV !== 'production'
 
-const { data: projects, error: projectError } = await useFetch(`${runtimeConfig.public.strapiBaseUrl}/api/projects?fields[0]=projectName&populate=projectHeader&populate=heroImage${isDev ? '&status=draft' : '&status=published'}`, {
+const { data: projects, error: projectError } = await useFetch(`${runtimeConfig.public.strapiBaseUrl}/api/projects?sort=sortOrder&fields[0]=projectName&populate=projectHeader&populate=heroImage${isDev ? '&status=draft' : '&status=published'}`, {
   headers: {
     'Authorization': `Bearer ${runtimeConfig.public.strapiApi}`
   },
