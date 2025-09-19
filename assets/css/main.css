@@ -7,10 +7,11 @@
   /* Colors */
   --color-default: #0f172b;
   --color-gray: #f5f5f5;
-  --color-test: #ff0000;
+  --color-light-blue: #c8faf4;
+  --color-red: #fc5f5a;
+  --color-dark-blue: #1f1d45;
   --color-ct-blue: #0799ce;
   --color-gray-copy: #d1d5dc;
-
   --font-sans: "stolzl", sans-serif;
 }
 
@@ -23,7 +24,7 @@ body {
 body {
   @apply font-sans;
   @apply bg-white;
-  @apply dark:bg-slate-900;
+  @apply dark:bg-dark-blue;
   @apply text-black;
   @apply dark:text-white;
 }
