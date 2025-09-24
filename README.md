@@ -17,8 +17,6 @@ Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduct
 
 ## Setup
 
-s
-
 Make sure to install dependencies:
 
 ```bash
