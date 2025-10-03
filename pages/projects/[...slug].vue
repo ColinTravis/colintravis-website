@@ -123,7 +123,7 @@ useSeoMeta({
         </div>
       </div>
       <NuxtImg v-if="projectData.heroImage" provider="imgix" format="webp" class="w-full"
-        :src="useImageUrl(projectData.heroImage?.url)" sizes="600px sm:50vw md:1920px" densities="x1 x2"
+        :src="useImageUrl(projectData.heroImage?.url)" sizes="600px sm:50vw md:1920px"
         :modifiers="{ auto: 'format,compress' }" loading="lazy" :placeholder="[50, 25, 75, 5]" />
     </div>
   </div>
