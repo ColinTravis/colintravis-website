@@ -1,6 +1,6 @@
 <template>
   <div v-if="blockData.copy"
-    class="text-xl lg:text-2xl text-balance prose prose-invert prose-lg group-[.in-grid]:my-0 group-[.in-grid]:px-6"
+    class="text-base lg:text-2xl text-balance prose prose-invert prose-lg group-[.in-grid]:my-0 group-[.in-grid]:px-6"
     v-html="$mdRenderer.render(copy)">
   </div>
 </template>

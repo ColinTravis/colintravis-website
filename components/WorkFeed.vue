@@ -17,7 +17,7 @@ const { data: projects, error: projectError } = await useFetch(`${runtimeConfig.
   <div v-if="projectError" class="p-4 text-red-700 rounded">
     Failed to load project data. Please check your connection and try again.
   </div>
-  <div v-else class="md:grid-cols-3 md:py-24 pb-24 pt-2 grid gap-6 max-w-6xl mx-auto px-6 sm:px-6 lg:px-8">
-    <WorkCard v-for="project in projects" :key="project.id" :project="project" />
+  <div id="work-feed" v-else class="md:grid-cols-3 md:py-24 pb-24 pt-2 grid gap-8 md:gap-6 max-w-6xl mx-auto px-6 sm:px-6 lg:px-8">
+    <WorkCard v-for="(project, projectIndex) in projects" :key="project.id" :project="project" />
   </div>
 </template>
