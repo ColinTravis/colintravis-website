@@ -31,3 +31,8 @@ body {
   @apply text-white;
   /* @apply dark:text-white; */
 }
+
+.prose a{
+  @apply hover:text-light-blue;
+  @apply transition-colors ease-in-out duration-200;
+}
