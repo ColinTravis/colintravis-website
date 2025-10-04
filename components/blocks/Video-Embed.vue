@@ -70,7 +70,7 @@ function playVideo(el) {
                 </div>
                 <img v-if="videoThumbnail" sizes="md:672px lg:1232px" height="552px" width="1232px" class="w-full"
                     :src="videoThumbnail" alt="video thumbnail" />
-                <p v-if="blockData.videoCaption" class="mt-3 font-sans dark:text-white text-black">
+                <p v-if="blockData.videoCaption" class="mt-3 font-sans text-white">
                     {{ blockData.videoCaption }}</p>
             </div>
             <div v-else>
@@ -88,7 +88,7 @@ function playVideo(el) {
                         allowfullscreen :title="oembed.title">
                     </iframe>
                 </div>
-                <p v-if="blockData.videoCaption" class="pt-3 font-sans dark:text-white text-black">
+                <p v-if="blockData.videoCaption" class="pt-3 font-sans text-white">
                     {{ blockData.videoCaption }}</p>
             </div>
         </transition>

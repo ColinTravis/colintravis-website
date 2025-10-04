@@ -9,7 +9,7 @@ const colorText = computed(() => {
     <!-- Dark Mode Toggle -->
     <ClientOnly>
         <button @click="$colorMode.preference = $colorMode.preference === 'dark' ? 'light' : 'dark'" type="button"
-            class="w-full mx-auto text-center text-black dark:text-white">
+            class="w-full mx-auto text-center text-white">
             Switch to {{ colorText }}
             <Icon v-if="colorMode.preference === 'dark'" name="tabler:sun-high" class="ml-2 text-base text-white" />
             <Icon v-if="colorMode.preference === 'light'" name="teenyicons:moon-solid"

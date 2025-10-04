@@ -103,20 +103,20 @@ useSeoMeta({
     <div class="flex flex-col mx-auto gap-12">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <h1 class="dark:text-white text-black text-6xl font-bold">
+          <h1 class="text-white text-6xl font-bold">
             {{ projectData.projectHeader.header ? projectData.projectHeader.header : projectData.projectName }}
           </h1>
-          <h2 class="dark:text-gray-copy text-black text-2xl text-balance">
+          <h2 class="text-gray-copy text-2xl text-balance">
             {{ projectData.projectHeader.subHeader }}
           </h2>
           <div class="flex flex-wrap gap-2 mt-4">
             <div v-for="(tag, tagIndex) in projectData.categoryTags" :key="`category-${tagIndex}`"
-              class="rounded-full border-2 bg-transparent inline-block px-3 dark:text-gray-copy">
+              class="rounded-full border-2 bg-transparent inline-block px-3 text-gray-copy">
               {{ tag.name }}
             </div>
           </div>
         </div>
-        <div v-if="projectData.projectHeader.description" class="dark:text-gray-copy text-balance">
+        <div v-if="projectData.projectHeader.description" class="text-gray-copy text-balance">
           <p>
             {{ projectData.projectHeader.description }}
           </p>

@@ -23,8 +23,10 @@ body {
 
 body {
   @apply font-sans;
-  @apply bg-white;
-  @apply dark:bg-dark-blue;
-  @apply text-black;
-  @apply dark:text-white;
+  /* @apply bg-white; */
+  /* @apply dark:bg-dark-blue; */
+  @apply bg-dark-blue;
+  /* @apply text-black; */
+  @apply text-white;
+  /* @apply dark:text-white; */
 }
