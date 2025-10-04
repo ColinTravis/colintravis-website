@@ -4,10 +4,10 @@
             <NuxtImg v-if="image && sameHeight && !isVideo(image?.url)" provider="imgix" format="webp"
                 :src="useImageUrl(image?.url)" width="800" height="800" fit="cover"
                 :modifiers="{ auto: 'format,compress' }" sizes="600px sm:50vw md:1920px"
-                loading="lazy" :placeholder="[50, 25, 75, 5]" />
+                loading="lazy" :placeholder="[50, 25, 75, 5]" densities="1x"/>
             <NuxtImg v-else-if="image && !sameHeight && !isVideo(image?.url)" provider="imgix" format="webp"
                 :src="useImageUrl(image?.url)" width="800" fit="cover" :modifiers="{ auto: 'format,compress' }"
-                sizes="600px sm:50vw md:1920px" loading="lazy" :placeholder="[50, 25, 75, 5]" />
+                sizes="600px sm:50vw md:1920px" loading="lazy" :placeholder="[50, 25, 75, 5]" densities="1x"/>
 
             <video v-else-if="isVideo" :src="image?.url" disableRemotePlayback autoplay muted loop></video>
         </div>

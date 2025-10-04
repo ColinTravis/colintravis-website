@@ -25,7 +25,7 @@ const spacing = computed(() => {
   <div class="flex flex-col items-center mx-auto" :class="fullScreen ? 'w-full' : 'md:w-1/2 px-12'">
     <NuxtImg v-if="image" class="w-full" provider="imgix" format="webp" :src="useImageUrl(image?.url)" width="1000"
       :modifiers="{ auto: 'format,compress' }" sizes="600px sm:50vw md:1920px" loading="lazy"
-      :placeholder="[50, 25, 75, 5]" />
+      :placeholder="[50, 25, 75, 5]" densities="1x" />
   </div>
 </template>
 

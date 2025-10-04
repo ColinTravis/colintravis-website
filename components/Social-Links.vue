@@ -21,7 +21,8 @@ const socialTypes = {
     linkedin: 'fa6-brands:linkedin-in',
     facebook: 'fa6-brands:facebook-f',
     instagram: 'fa6-brands:instagram',
-    youtube: 'fa6-brands:youtube'
+    youtube: 'fa6-brands:youtube',
+    github: 'fa6-brands:github',
 }
 </script>
 
@@ -33,7 +34,7 @@ const socialTypes = {
                 :src="useImageUrl(social.icon?.url)" width="100" height="100" :modifiers="{ auto: 'format,compress' }"
                 :alt="`${social.name} Icon`" />
             <Icon v-else size="22" class="text-white hover:text-ct-blue ease-in-out duration-200 transition-colors"
-                :name="socialTypes[social.name.toLowerCase()]" />
+                :name="socialTypes[social.name.toLowerCase()] || 'fa6-solid:link'" />
         </a>
     </div>
 </template>

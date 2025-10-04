@@ -124,7 +124,7 @@ useSeoMeta({
       </div>
       <NuxtImg v-if="projectData.heroImage" provider="imgix" format="webp" class="w-full"
         :src="useImageUrl(projectData.heroImage?.url)" sizes="600px sm:50vw md:1920px"
-        :modifiers="{ auto: 'format,compress' }" loading="lazy" :placeholder="[50, 25, 75, 5]" />
+        :modifiers="{ auto: 'format,compress' }" loading="lazy" :placeholder="[50, 25, 75, 5]" densities="1x" />
     </div>
   </div>
   <BlockFeed v-if="projectData" :projectName="slug[0]" :projectContent="projectData.projectContent" />
