@@ -9,7 +9,7 @@
                 :src="useImageUrl(image?.url)" width="800" fit="cover" :modifiers="{ auto: 'format,compress' }"
                 sizes="600px sm:50vw md:1920px" loading="lazy" :placeholder="[50, 25, 75, 5]" densities="1x"/>
 
-            <video v-else-if="isVideo" :src="image?.url" disableRemotePlayback autoplay muted loop></video>
+            <video v-else-if="isVideo" :src="image?.url" disableRemotePlayback autoplay muted loop class="w-full"></video>
         </div>
     </div>
 </template>
