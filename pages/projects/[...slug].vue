@@ -99,7 +99,7 @@ useSeoMeta({
 
 <template>
   <AppHeader />
-  <div v-if="projectData" class="max-w-6xl px-4 sm:px-6 lg:px-8 mx-auto py-24">
+  <div v-if="projectData" class="max-w-6xl px-4 sm:px-6 lg:px-8 mx-auto py-12 md:py-24">
     <div class="flex flex-col mx-auto gap-12">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
@@ -131,5 +131,6 @@ useSeoMeta({
   <div v-else class="flex justify-center items-center h-svh">
     <p class="text-2xl">Loading project...</p>
   </div>
+  <NextProject />
   <!-- <pre class="text-blue-600">{{ projectData.projectContent }}</pre> -->
 </template>
