@@ -1,7 +1,33 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-test: #ff0000;
-  --color-ct-blue: '#0799ce';
-  --font-sans: 'stolzl', sans-serif;
+  /* Colors */
+  --color-default: #0f172b;
+  --color-gray: #f5f5f5;
+  --color-light-blue: #c8faf4;
+  --color-red: #fc5f5a;
+  --color-dark-blue: #1f1d45;
+  --color-ct-blue: #0799ce;
+  --color-gray-copy: #d1d5dc;
+  --font-sans: "stolzl", sans-serif;
+  --font-mono: "Martian Mono", monospace;
+}
+
+html,
+body {
+  @apply touch-pan-x;
+  @apply touch-pan-y;
+}
+
+body {
+  @apply font-sans;
+  /* @apply bg-white; */
+  /* @apply dark:bg-dark-blue; */
+  @apply bg-dark-blue;
+  /* @apply text-black; */
+  @apply text-white;
+  /* @apply dark:text-white; */
 }
