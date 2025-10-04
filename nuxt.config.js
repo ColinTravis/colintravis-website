@@ -37,7 +37,6 @@ export default defineNuxtConfig({
   modules: [
     "@nuxt/icon",
     "@nuxt/image",
-    "nuxt-swiper",
     "@nuxt/fonts",
     // "@nuxtjs/seo",
     "@nuxtjs/color-mode",
