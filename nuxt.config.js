@@ -40,11 +40,11 @@ export default defineNuxtConfig({
     "nuxt-swiper",
     "@nuxt/fonts",
     // "@nuxtjs/seo",
-    // "@nuxtjs/color-mode",
+    "@nuxtjs/color-mode",
     "nuxt-umami",
   ],
 
-  // colorMode: { classSuffix: "", preference: "dark" },
+  colorMode: { classSuffix: "", preference: "dark" },
 
   umami: {
     id: "6447c54d-c147-45b7-a622-9d86d74fe6d2",
