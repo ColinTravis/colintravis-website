@@ -27,7 +27,7 @@ const socialTypes = {
 </script>
 
 <template>
-    <div class="flex flex-row space-x-3 my-2">
+    <div class="flex flex-row gap-4 my-2">
         <a target="_blank" :href="social.url" v-for="(social, socialIndex) in socialData.socialLinks"
             class="flex items-center justify-center size-6 text-white bg-transparent">
             <NuxtImg class="max-w-[22px]" provider="imgix" format="webp" v-if="social.icon"
