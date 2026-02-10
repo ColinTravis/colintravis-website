@@ -20,7 +20,7 @@ useSeoMeta({
 
 <template>
   <div class="">
-    <AppHeader />
+    <!-- <AppHeader /> -->
     <Intro />
     <WorkFeed />
   </div>
