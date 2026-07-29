@@ -1,38 +1,40 @@
 <script setup>
 const { slug } = useRoute().params;
 
-const isDev = process.env.NODE_ENV !== 'production';
+const isDev = process.env.NODE_ENV !== "production";
 
 const { data: projectData } = await useAsyncData(
   `project-${slug}`,
-  () => useStrapiFetch(
-    '/projects',
-    {
+  () =>
+    useStrapiFetch("/projects", {
       filters: {
         projectName: {
           $eq: slug,
         },
       },
-      status: `${isDev ? 'draft' : 'published'}`,
+      status: `${isDev ? "draft" : "published"}`,
       populate: {
-        projectHeader: '*',
+        projectHeader: "*",
         heroImage: true,
         projectContent: {
-          populate: '*',
+          populate: "*",
         },
       },
-    }
-  ),
+    }),
   {
     transform: (response) => {
       if (!response?.data?.length) return null;
       return response.data[0];
     },
-  }
+  },
 );
 
 if (!projectData.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Project Not Found', fatal: true });
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Project Not Found",
+    fatal: true,
+  });
 }
 
 // const { data: projectData } = await useAsyncData(
@@ -58,11 +60,11 @@ const metaTitle = computed(() => {
   if (projectData.value?.projectName) {
     return `Colin Travis | ${projectData.value.projectName}`;
   }
-  return 'Colin Travis';
+  return "Colin Travis";
 });
 
 const metaDescription = computed(() => {
-  return projectData.value?.metaDescription || 'Colin Travis Portfolio';
+  return projectData.value?.metaDescription || "Colin Travis Portfolio";
 });
 
 const metaImage = computed(() => {
@@ -91,43 +93,67 @@ useSeoMeta({
   ogDescription: metaDescription,
   ogImage: metaImage,
   url: `https://colintravis.com/projects/${slug[0]}`,
-  twitterCard: 'summary_large_image'
+  twitterCard: "summary_large_image",
 });
-
-
 </script>
 
 <template>
   <AppHeader />
-  <div v-if="projectData" class="max-w-6xl px-4 sm:px-6 lg:px-8 mx-auto py-12 md:py-24">
+  <div
+    v-if="projectData"
+    class="max-w-6xl px-4 sm:px-6 lg:px-8 mx-auto py-12 md:py-24"
+  >
     <div class="flex flex-col mx-auto gap-12">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <h1 class="text-white text-6xl font-bold">
-            {{ projectData.projectHeader.header ? projectData.projectHeader.header : projectData.projectName }}
+            {{
+              projectData.projectHeader.header
+                ? projectData.projectHeader.header
+                : projectData.projectName
+            }}
           </h1>
-          <h2 class="text-gray-copy text-2xl text-balance">
+          <h2 class="text-gray-copy text-2xl text-balance mt-4">
             {{ projectData.projectHeader.subHeader }}
           </h2>
           <div class="flex flex-wrap gap-2 mt-4">
-            <div v-for="(tag, tagIndex) in projectData.categoryTags" :key="`category-${tagIndex}`"
-              class="rounded-full border-2 bg-transparent inline-block px-3 text-gray-copy">
+            <div
+              v-for="(tag, tagIndex) in projectData.categoryTags"
+              :key="`category-${tagIndex}`"
+              class="rounded-full border-2 bg-transparent inline-block px-3 text-gray-copy"
+            >
               {{ tag.name }}
             </div>
           </div>
         </div>
-        <div v-if="projectData.projectHeader.description" class="text-gray-copy text-balance">
+        <div
+          v-if="projectData.projectHeader.description"
+          class="text-gray-copy text-balance"
+        >
           <p>
             {{ projectData.projectHeader.description }}
           </p>
         </div>
       </div>
-      <NuxtImg v-if="projectData.heroImage" provider="imgix" format="webp" class="w-full"
-        :src="useImageUrl(projectData.heroImage?.url)" sizes="600px sm:50vw md:1920px"
-        :modifiers="{ auto: 'format,compress' }" loading="lazy" :placeholder="[50, 25, 75, 5]" densities="1x" />
+      <NuxtImg
+        v-if="projectData.heroImage"
+        provider="imgix"
+        format="webp"
+        class="w-full"
+        :src="useImageUrl(projectData.heroImage?.url)"
+        sizes="600px sm:50vw md:1920px"
+        :modifiers="{ auto: 'format,compress' }"
+        loading="lazy"
+        :placeholder="[50, 25, 75, 5]"
+        densities="1x"
+      />
     </div>
   </div>
-  <BlockFeed v-if="projectData" :projectName="slug[0]" :projectContent="projectData.projectContent" />
+  <BlockFeed
+    v-if="projectData"
+    :projectName="slug[0]"
+    :projectContent="projectData.projectContent"
+  />
   <div v-else class="flex justify-center items-center h-svh">
     <p class="text-2xl">Loading project...</p>
   </div>

@@ -1,5 +1,5 @@
 <template>
-    <nuxt-link :to="`projects/${project.projectName}`"
+    <nuxt-link :to="`/projects/${project.projectName}`"
         class="bg-transparent border-3 border-ct-blue text-white shadow-lg rounded-lg flex flex-col justify-between overflow-hidden group">
         <div class="mb-2 px-6 pt-6 pb-4">
             <p class="font-bold text-balance">{{ project.projectName }}</p>
