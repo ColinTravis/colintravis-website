@@ -9,7 +9,7 @@ const { data: projects, error: projectError } = await useAsyncData(
     useStrapiFetch("/projects", {
       sort: "sortOrder",
       fields: ["projectName"],
-      populate: ["projectHeader", "heroImage"],
+      populate: ["projectHeader", "heroImage", "workFeedOverride"],
       status: `${import.meta.dev ? "draft" : "published"}`,
     }),
   // ${isDev ? '&status=draft' : '&status=published'}
@@ -18,7 +18,7 @@ const { data: projects, error: projectError } = await useAsyncData(
       if (!response?.data) return [];
       return response.data;
     },
-  },
+  }
 );
 </script>
 
