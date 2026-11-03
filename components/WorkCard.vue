@@ -21,7 +21,7 @@
     </div>
     <div v-else>
       <NuxtImg
-        v-if="project.heroImage.url"
+        v-if="project.heroImage?.url"
         class="group-hover:scale-[1.05] ease-in-out duration-200 transition-transform"
         provider="imgix"
         format="webp"
