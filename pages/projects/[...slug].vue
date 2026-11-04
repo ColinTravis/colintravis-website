@@ -26,7 +26,7 @@ const { data: projectData } = await useAsyncData(
       if (!response?.data?.length) return null;
       return response.data[0];
     },
-  },
+  }
 );
 
 if (!projectData.value) {
@@ -135,8 +135,17 @@ useSeoMeta({
           </p>
         </div>
       </div>
+      <video
+        v-if="projectData.heroImage?.mime == 'video/mp4'"
+        class="w-full"
+        :src="projectData.heroImage.url"
+        disableRemotePlayback
+        autoplay
+        muted
+        loop
+      ></video>
       <NuxtImg
-        v-if="projectData.heroImage"
+        v-else-if="projectData.heroImage"
         provider="imgix"
         format="webp"
         class="w-full"
